@@ -124,7 +124,7 @@ public class PoS extends JFrame {
         panel.add(priceField);
         
         // Process user input
-		int result = JOptionPane.showConfirmDialog(null, panel, "Add new Product", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, panel, "Add new item", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 			
 			String name = nameField.getText();
@@ -135,11 +135,14 @@ public class PoS extends JFrame {
 			try{
 				price = Double.parseDouble(priceString);
 			} catch (NumberFormatException e){
+        		JOptionPane.showMessageDialog(null, "Please input number for price");
 				return;
 			}
 
-			if (name == "" || price <= 0)
+			if (name == "" || price <= 0){
+        		JOptionPane.showMessageDialog(null, "Invalid info");
 				return;
+			}
 			
 			// Determine item type and add to menu
 			if (icecreamButton.isSelected()){
@@ -148,6 +151,9 @@ public class PoS extends JFrame {
 			}else if (decoratorButton.isSelected()){
 	        	JButton button = createButton("decorator", name, price);
 	        	decoratorMenuPanel.add(button);
+			}else{
+        		JOptionPane.showMessageDialog(null, "Please select item type");
+				return;
 			}
 			
 			// Update the menu
@@ -206,10 +212,14 @@ public class PoS extends JFrame {
             		// Only one flavor
             		if (icecream == null)
             			icecream = new Flavor(name, price);
+            		else
+            			JOptionPane.showMessageDialog(null, "You have already chosen a flavor");
             	} else {
             		// Flavor must be chosen first
             		if (icecream != null)
             			icecream = new Decorator(icecream, name, price);
+            		else
+            			JOptionPane.showMessageDialog(null, "Please choose a flavor first");
             	}
             	
             	// Refresh description and total price
