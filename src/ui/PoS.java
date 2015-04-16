@@ -1,10 +1,3 @@
-/*
- * disable/enable menu
- * 
- * 
- * 
- */
-
 package ui;
 
 import javax.swing.*;
