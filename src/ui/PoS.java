@@ -182,6 +182,7 @@ public class PoS extends JFrame {
         	
     	    panel.add(button);
         }
+
 	}
 
 	// Create buttons
@@ -241,10 +242,13 @@ public class PoS extends JFrame {
 
 	public static void main(String[] args) {
 
-        new PoS();
+        PoS pos = new PoS();
 
         createMenu("flavor", flavorMenuPanel, flavorArray);
         createMenu("decorator", decoratorMenuPanel, decoratorArray);
 
+		// Update the menu
+        pos.revalidate();
+        pos.repaint();
     }
 }
